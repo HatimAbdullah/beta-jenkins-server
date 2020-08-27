@@ -18,7 +18,7 @@ resource "aws_key_pair" "beta" {
 }
 
 resource "aws_instance" "jenkins" {
-  ami                    = aws_ami.latest_jenkins.id
+  ami                    = data.aws_ami.latest_jenkins.id
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.steel.id]
   key_name               = aws_key_pair.beta.key_name
@@ -55,7 +55,7 @@ resource "aws_security_group" "steel" {
 }
 
 
-output "jenkins-gateway" {
+output "jenkins" {
   value = aws_instance.jenkins.public_ip
 }
 

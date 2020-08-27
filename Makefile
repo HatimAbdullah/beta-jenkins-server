@@ -19,5 +19,5 @@ apply:
 	time terraform apply plan.out
 
 cnct:
-	ssh -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.jenkins-gateway.value' | xargs)
+	ssh -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.jenkins.value' | xargs)
 
