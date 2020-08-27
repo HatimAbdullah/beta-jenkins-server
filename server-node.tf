@@ -2,13 +2,23 @@ provider "aws" {
   region = "me-south-1"
 }
 
+data "aws_ami" "latest_jenkins" {
+  most_recent = true
+  owners      = ["772816346052"]
+
+  filter {
+    name   = "name"
+    values = ["beta-jenkins-machine-*"]
+  }
+}
+
 resource "aws_key_pair" "beta" {
   key_name   = "beta-key"
   public_key = file("./ssh/id_rsa.pub")
 }
 
 resource "aws_instance" "jenkins" {
-  ami                    = "ami-0c5f01a87716073c6"
+  ami                    = aws_ami.latest_jenkins.id
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.steel.id]
   key_name               = aws_key_pair.beta.key_name
