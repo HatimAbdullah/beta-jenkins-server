@@ -23,4 +23,4 @@ EOF
 sudo chmod a-w /etc/systemd/system/jenkins.service
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins
-sudo chmod a+rw /run/docker.sock
+sudo chmod a+r /run/docker.sock
