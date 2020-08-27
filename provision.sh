@@ -6,6 +6,7 @@ mkdir jenkins_home
 chmod a+rwx jenkins_home
 sudo touch /etc/systemd/system/jenkins.service
 sudo chmod a+rw /etc/systemd/system/jenkins.service
+sudo chmod a+rw /run/docker.sock
 sudo docker pull jenkinsci/blueocean
 cat <<EOF > /etc/systemd/system/jenkins.service
 [Unit]
@@ -14,7 +15,7 @@ After=docker.service
 
 [Service]
 Type=simple
-ExecStart=sudo docker container run -d --name jenkins -p 80:8080 --restart=always -v /home/ubuntu/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
+ExecStart=sudo docker container run -d --name jenkins -p 80:8080 --restart=always -v /home/ubuntu/jenkins_home:/var/jenkins_home -v /run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
 
 [Install]
 WantedBy=multi-user.target
