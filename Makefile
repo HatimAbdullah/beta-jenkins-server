@@ -1,7 +1,7 @@
 all: stop start exec
 
 start:
-	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $$(pwd):/work -v $$PWD/creds:/root/.aws -v terraform-plugin-cache:/plugin-cache -w /work --name beta-env  lordblackfish/mars-env
+	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $$(pwd):/work -v $$PWD/creds:/root/.aws -v terraform-plugin-cache:/plugin-cache -w /work --name beta-env lordblackfish/beta-env
 
 build:
 	time packer build packer.json

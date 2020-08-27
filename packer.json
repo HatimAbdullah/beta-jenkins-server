@@ -2,14 +2,14 @@
   "variables": {
     "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
-    "owner" : "jenkins"
+    "owner" : "beta"
   },
   "builders": [{
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
-    "ami_name": "jenkins-machine-{{timestamp}}",
+    "ami_name": "beta-jenkins-machine-{{timestamp}}",
     "instance_type": "t3.micro",
-    "region": "eu-central-1",
+    "region": "me-south-1",
     "source_ami_filter": {
       "filters": {
         "virtualization-type": "hvm",
@@ -27,7 +27,7 @@
     },
     "run_volume_tags" : {
       "owner" : "{{user `owner`}}",
-      "type" : "jenkins-machine"
+      "type" : "beta-jenkins-machine"
     }
   }],
   "provisioners": [{
