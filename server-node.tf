@@ -19,7 +19,7 @@ resource "aws_key_pair" "beta" {
 
 resource "aws_instance" "jenkins" {
   ami                    = data.aws_ami.latest_jenkins.id
-  instance_type          = "t3.micro"
+  instance_type          = "t3.medium"
   vpc_security_group_ids = [aws_security_group.steel.id]
   key_name               = aws_key_pair.beta.key_name
 
